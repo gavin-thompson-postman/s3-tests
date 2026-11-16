@@ -7923,9 +7923,9 @@ def test_ranged_request_empty_object():
 # GCS versioning is on or off, so the google-cloud-storage backend
 # refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_bucket_create_suspend():
     bucket_name = get_new_bucket()
@@ -8082,9 +8082,9 @@ def test_versioning_stack_delete_merkers():
 # generations as ids, so the null version names nothing on the
 # google-cloud-storage backend
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_obj_plain_null_version_removal():
     bucket_name = get_new_bucket()
@@ -8111,9 +8111,9 @@ def test_versioning_obj_plain_null_version_removal():
 # generations as ids, so the null version names nothing on the
 # google-cloud-storage backend
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_obj_plain_null_version_overwrite():
     bucket_name = get_new_bucket()
@@ -8152,9 +8152,9 @@ def test_versioning_obj_plain_null_version_overwrite():
 # GCS versioning is on or off, so the google-cloud-storage backend
 # refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_obj_plain_null_version_overwrite_suspended():
     bucket_name = get_new_bucket()
@@ -8225,10 +8225,6 @@ def overwrite_suspended_versioning_obj(client, bucket_name, key, version_ids, co
 # GCS versioning is on or off, so the google-cloud-storage backend
 # refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
-@pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_obj_suspend_versions():
     bucket_name = get_new_bucket()
     client = get_client()
@@ -8267,9 +8263,9 @@ def test_versioning_obj_suspend_versions():
 # GCS versioning is on or off, so the google-cloud-storage backend
 # refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_obj_suspended_copy():
     bucket_name = get_new_bucket()
@@ -12761,9 +12757,9 @@ def test_delete_tags_obj_public():
 # the Suspended arm: GCS versioning is on or off, so the
 # google-cloud-storage backend refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_bucket_atomic_upload_return_version_id():
     bucket_name = get_new_bucket()
@@ -12802,9 +12798,9 @@ def test_versioning_bucket_atomic_upload_return_version_id():
 # the Suspended arm: GCS versioning is on or off, so the
 # google-cloud-storage backend refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_versioning_bucket_multipart_upload_return_version_id():
     content_type='text/bla'
@@ -19913,9 +19909,9 @@ def check_delete_marker(client, bucket, key, status):
 
 @pytest.mark.delete_marker
 @pytest.mark.fails_on_dbstore
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
+# the versioned azureblob lane reports every bucket Enabled until it is
+# suspended, since Azure versions the whole account: no bucket there starts
+# unversioned
 @pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_delete_marker_nonversioned():
     bucket = get_new_bucket()
@@ -19947,10 +19943,6 @@ def test_delete_marker_versioned():
 # GCS versioning is on or off, so the google-cloud-storage backend
 # refuses Suspended with NotImplemented
 @pytest.mark.fails_on_s3proxy_gcs
-# the versioned azureblob lane reports every bucket Enabled, since Azure
-# versions the whole account, and refuses Suspended: no bucket there starts
-# unversioned or can be suspended
-@pytest.mark.fails_on_s3proxy_azureblob_versioning
 def test_delete_marker_suspended():
     bucket = get_new_bucket()
     client = get_client()
